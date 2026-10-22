@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mcprobe"
+version = "0.1.0"
+description = "A privacy-first diagnostic CLI for McDonald's China MCP Server"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+  { name = "McProbe contributors" }
+]
+keywords = [
+  "mcp",
+  "mcdonalds",
+  "diagnostics",
+  "streamable-http",
+  "agent-skill"
+]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent"
+]
+
+[project.scripts]
+mcprobe = "mcprobe.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["mcprobe*"]

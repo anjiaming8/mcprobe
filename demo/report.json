@@ -1,0 +1,373 @@
+{
+  "schema_version": 1,
+  "tool": "McProbe",
+  "version": "0.1.0",
+  "generated_at": "2026-10-22T11:22:46+08:00",
+  "mode": "fixture",
+  "fixture_label": "McProbe 离线健康样例",
+  "overall_status": "pass",
+  "exit_code": 0,
+  "source": {
+    "endpoint": "https://mcp.mcd.cn",
+    "token_configured": false,
+    "session_present": true
+  },
+  "server": {
+    "protocolVersion": "2025-06-18",
+    "serverInfo": {
+      "name": "mcd-mcp",
+      "version": "1.0.0"
+    },
+    "capabilities": {
+      "tools": {
+        "listChanged": true
+      }
+    }
+  },
+  "timings_ms": {
+    "initialize": 42.7,
+    "tools_list": 31.2,
+    "probes": {
+      "now-time-info": 28.4,
+      "campaign-calendar": 35.9
+    }
+  },
+  "contract": {
+    "expected_count": 35,
+    "actual_count": 35,
+    "missing": [],
+    "unexpected": [],
+    "schema_fingerprint": "6a0fd330be5a99a4"
+  },
+  "checks": [
+    {
+      "check_id": "fixture.loaded",
+      "title": "离线样例",
+      "status": "pass",
+      "summary": "McProbe 离线健康样例",
+      "detail": "未连接麦当劳服务，结果只用于验证诊断链路",
+      "latency_ms": null,
+      "evidence": {
+        "captured_at": "2026-10-22T03:22:46+00:00"
+      }
+    },
+    {
+      "check_id": "transport.connect",
+      "title": "Streamable HTTP",
+      "status": "info",
+      "summary": "离线模式未发起网络请求",
+      "detail": "",
+      "latency_ms": 42.7,
+      "evidence": {}
+    },
+    {
+      "check_id": "protocol.negotiated",
+      "title": "MCP 协议",
+      "status": "pass",
+      "summary": "样例协议版本 2025-06-18",
+      "detail": "",
+      "latency_ms": null,
+      "evidence": {
+        "simulated": true
+      }
+    },
+    {
+      "check_id": "session.header",
+      "title": "会话连续性",
+      "status": "pass",
+      "summary": "样例包含 Mcp-Session-Id",
+      "detail": "",
+      "latency_ms": null,
+      "evidence": {
+        "simulated": true
+      }
+    },
+    {
+      "check_id": "tools.list",
+      "title": "工具发现",
+      "status": "pass",
+      "summary": "样例 tools/list 返回 35 项工具",
+      "detail": "",
+      "latency_ms": 31.2,
+      "evidence": {}
+    },
+    {
+      "check_id": "tools.names",
+      "title": "35 项工具契约",
+      "status": "pass",
+      "summary": "发现 35 项工具；缺少 0 项，新增 0 项",
+      "detail": "缺少：无；未登记新增：无",
+      "latency_ms": null,
+      "evidence": {
+        "expected_count": 35,
+        "actual_count": 35,
+        "missing": [],
+        "unexpected": [],
+        "schema_fingerprint": "6a0fd330be5a99a4"
+      }
+    },
+    {
+      "check_id": "tools.read_only_smoke",
+      "title": "只读冒烟测试",
+      "status": "pass",
+      "summary": "2/2 项只读调用通过",
+      "detail": "关键读取路径可正常返回",
+      "latency_ms": null,
+      "evidence": {}
+    },
+    {
+      "check_id": "safety.write_guard",
+      "title": "写入隔离",
+      "status": "pass",
+      "summary": "7 项可写工具仅做契约检查，本次未调用",
+      "detail": "9 项个人数据工具默认不在报告中展示原始内容",
+      "latency_ms": null,
+      "evidence": {
+        "write_tools_never_called": true
+      }
+    },
+    {
+      "check_id": "account.optional",
+      "title": "个人账户检查",
+      "status": "info",
+      "summary": "默认关闭；需要时加 --account，仅判断能否读取",
+      "detail": "McProbe 不保存积分余额、订单、券码或地址内容",
+      "latency_ms": null,
+      "evidence": {}
+    }
+  ],
+  "probes": [
+    {
+      "name": "now-time-info",
+      "status": "pass",
+      "latency_ms": 28.4,
+      "summary": "离线样例调用成功",
+      "text_preview": "当前时间：2026-10-22T11:24:00+08:00"
+    },
+    {
+      "name": "campaign-calendar",
+      "status": "pass",
+      "latency_ms": 35.9,
+      "summary": "离线样例调用成功",
+      "text_preview": "活动日历读取成功（离线样例，不代表实时活动）"
+    }
+  ],
+  "tools": [
+    {
+      "name": "list-nutrition-foods",
+      "description": "",
+      "risk": "read",
+      "has_input_schema": true
+    },
+    {
+      "name": "delivery-query-addresses",
+      "description": "",
+      "risk": "personal",
+      "has_input_schema": true
+    },
+    {
+      "name": "delivery-create-address",
+      "description": "",
+      "risk": "write",
+      "has_input_schema": true
+    },
+    {
+      "name": "delivery-query-stores",
+      "description": "",
+      "risk": "read",
+      "has_input_schema": true
+    },
+    {
+      "name": "query-meal-assistance",
+      "description": "",
+      "risk": "read",
+      "has_input_schema": true
+    },
+    {
+      "name": "query-nearby-stores",
+      "description": "",
+      "risk": "read",
+      "has_input_schema": true
+    },
+    {
+      "name": "query-store-coupons",
+      "description": "",
+      "risk": "personal",
+      "has_input_schema": true
+    },
+    {
+      "name": "query-meals",
+      "description": "",
+      "risk": "read",
+      "has_input_schema": true
+    },
+    {
+      "name": "query-meal-detail",
+      "description": "",
+      "risk": "read",
+      "has_input_schema": true
+    },
+    {
+      "name": "calculate-price",
+      "description": "",
+      "risk": "read",
+      "has_input_schema": true
+    },
+    {
+      "name": "create-order",
+      "description": "",
+      "risk": "write",
+      "has_input_schema": true
+    },
+    {
+      "name": "cancel-order",
+      "description": "",
+      "risk": "write",
+      "has_input_schema": true
+    },
+    {
+      "name": "query-order",
+      "description": "",
+      "risk": "personal",
+      "has_input_schema": true
+    },
+    {
+      "name": "order-list",
+      "description": "",
+      "risk": "personal",
+      "has_input_schema": true
+    },
+    {
+      "name": "campaign-calendar",
+      "description": "",
+      "risk": "read",
+      "has_input_schema": true
+    },
+    {
+      "name": "available-coupons",
+      "description": "",
+      "risk": "read",
+      "has_input_schema": true
+    },
+    {
+      "name": "auto-bind-coupons",
+      "description": "",
+      "risk": "write",
+      "has_input_schema": true
+    },
+    {
+      "name": "query-my-coupons",
+      "description": "",
+      "risk": "personal",
+      "has_input_schema": true
+    },
+    {
+      "name": "query-my-account",
+      "description": "",
+      "risk": "personal",
+      "has_input_schema": true
+    },
+    {
+      "name": "mall-points-products",
+      "description": "",
+      "risk": "read",
+      "has_input_schema": true
+    },
+    {
+      "name": "mall-product-detail",
+      "description": "",
+      "risk": "read",
+      "has_input_schema": true
+    },
+    {
+      "name": "mall-create-order",
+      "description": "",
+      "risk": "write",
+      "has_input_schema": true
+    },
+    {
+      "name": "now-time-info",
+      "description": "",
+      "risk": "read",
+      "has_input_schema": true
+    },
+    {
+      "name": "query-lottery-info",
+      "description": "",
+      "risk": "read",
+      "has_input_schema": true
+    },
+    {
+      "name": "draw-lottery",
+      "description": "",
+      "risk": "write",
+      "has_input_schema": true
+    },
+    {
+      "name": "query-my-prizes",
+      "description": "",
+      "risk": "personal",
+      "has_input_schema": true
+    },
+    {
+      "name": "mall-order-list",
+      "description": "",
+      "risk": "personal",
+      "has_input_schema": true
+    },
+    {
+      "name": "mall-order-detail",
+      "description": "",
+      "risk": "personal",
+      "has_input_schema": true
+    },
+    {
+      "name": "query-party-city",
+      "description": "",
+      "risk": "read",
+      "has_input_schema": true
+    },
+    {
+      "name": "query-party-store",
+      "description": "",
+      "risk": "read",
+      "has_input_schema": true
+    },
+    {
+      "name": "query-partystore-date",
+      "description": "",
+      "risk": "read",
+      "has_input_schema": true
+    },
+    {
+      "name": "query-partystore-session",
+      "description": "",
+      "risk": "read",
+      "has_input_schema": true
+    },
+    {
+      "name": "party-order-create",
+      "description": "",
+      "risk": "write",
+      "has_input_schema": true
+    },
+    {
+      "name": "query-promotions",
+      "description": "",
+      "risk": "read",
+      "has_input_schema": true
+    },
+    {
+      "name": "query-survey-coupon",
+      "description": "",
+      "risk": "read",
+      "has_input_schema": true
+    }
+  ],
+  "privacy": {
+    "writes_executed": 0,
+    "raw_account_content_in_report": false,
+    "token_in_report": false
+  },
+  "disclaimer": "McProbe 是参赛者开发的诊断工具，非麦当劳官方产品。诊断结果只反映本次网络与凭证状态，不代表服务永久可用性。"
+}
